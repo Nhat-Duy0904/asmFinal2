@@ -1,0 +1,37 @@
+.container{
+    border: 3px solid aquamarine;
+    width: 60%;
+    margin: auto;
+    background-color: aqua;
+}
+table{
+    margin: auto;
+    width: 60%;
+    height: 60%;
+    text-align: center;
+    background-color: bisque;
+    color: rgb(241, 41, 41);
+}
+h1{
+    text-align: center;
+    color: brown;
+}
+select:hover{
+    background-color: palevioletred;
+}
+select{
+    margin-left: 47%;
+    margin-bottom: 20px;
+    background-color: purple;
+    color: pink;
+}
+.tx{
+    background-color: aqua;
+}
+input{
+    height: 20px;
+    width: 40px;
+}
+h3{
+    margin-top: 30px;
+}

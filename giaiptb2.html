@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ps21413 - asm - bài 1</title>
+    <link rel="stylesheet" href="bai1.css">
+    <script>
+        function choso() {
+            var a = Math.round(Math.random() * 10) || Math.round(Math.random() * -10);
+            var b = Math.round(Math.random() * 10) || Math.round(Math.random() * -10);
+            var c = Math.round(Math.random() * 10) || Math.round(Math.random() * -10);
+            document.getElementById("a").value = a;
+            document.getElementById("b").value = b;
+            document.getElementById("c").value = c;
+
+            var btn = document.getElementById("btngiai");
+            btn.disabled = false;
+        }
+        function giaipt() {
+            var a = document.getElementById("a").value;
+            var b = document.getElementById("b").value;
+            var c = document.getElementById("c").value;
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                alert("Hệ số a\/b\/c không hợp lệ!");
+            } else if (a == 0) {
+                if (b == 0) {
+                    if (c == 0) {
+                        document.getElementById("kq").innerHTML = "Phương trình có vô số nghiệm";
+                    } else {
+                        document.getElementById("kq").innerHTML = "Phương trình vô nghiệm";
+                    }
+                } else {
+                    document.getElementById("kq").innerHTML = "Phương trình có nghiệm x=" + (-(c) / b).toFixed(2);
+                }
+            } else {
+                var delta = Math.pow(b, 2) - 4 * a * c;
+                if (delta < 0) {
+                    document.getElementById("kq").innerHTML = "Phương trình vô nghiệm";
+                } else if (delta == 0) {
+                    document.getElementById("kq").innerHTML = "Phương trình có nghiệm kép x = " + (-b / (2 * a)).toFixed(2);
+                } else {
+                    document.getElementById("kq").innerHTML = "Phương trình có 2 nghiệm phân biệt <br>x1 = " + ((-b + Math.sqrt(delta)) / (2 * a)).toFixed(2) + "</br> <br>x2 = " + ((-b - Math.sqrt(delta)) / (2 * a)).toFixed(2) + "</br>";
+                }
+            }
+            var btn = document.getElementById("btngiai");
+            btn.disabled = true;
+        }
+
+
+        function lamlai() {
+            document.getElementById("a").value = "";
+            document.getElementById("b").value = "";
+            document.getElementById("c").value = "";
+        }
+        function thoigian() {
+            var today = new Date();
+            var date = today.getDay() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = "<b>Bây giờ là: " + date + "--" + time + "</b>";
+            document.getElementById("dongho").innerHTML = dateTime;
+        }
+        function slgiai() {
+            var slg = sessionStorage.getItem("soLanGiai");
+            if (slg == null) slg = 0;
+            slg++;
+            sessionStorage.setItem("soLanGiai", slg);
+            document.getElementById("soLanGiai").innerHTML = slg;
+        }
+        function hienpt() {
+            var hsa = document.getElementById("a").value;
+            var hsb = document.getElementById("b").value;
+            var hsc = document.getElementById("c").value;
+            var str = "Phương trình: ";
+            if (hsa == 0) {
+                if (hsb == 0) {
+                    if (hsc == 0) {
+                        str += "0 = 0";
+                    } else if (hsc > 0) {
+                        str += Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-" + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == 1) {
+                    if (hsc == 0) {
+                        str += "x = 0";
+                    } else if (hsc > 0) {
+                        str += "x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == -1) {
+                    if (hsc == 0) {
+                        str += "-x = 0";
+                    } else if (hsc > 0) {
+                        str += "-x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb > 0) {
+                    if (hsc == 0) {
+                        str += Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb < 0) {
+                    if (hsc == 0) {
+                        str += "-" + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += "-" + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-" + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                }
+            } else if (hsa == 1) {
+                if (hsb == 0) {
+                    if (hsc == 0) {
+                        str += "x<sup>2</sup> = 0";
+                    } else if (hsc > 0) {
+                        str += "x<sup>2</sup> + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "x<sup>2</sup> - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == 1) {
+                    if (hsc == 0) {
+                        str += "x<sup>2</sup> + x = 0";
+                    } else if (hsc > 0) {
+                        str += "x<sup>2</sup> + x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "x<sup>2</sup> + x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == -1) {
+                    if (hsc == 0) {
+                        str += "x<sup>2</sup> - x = 0";
+                    } else if (hsc > 0) {
+                        str += "x<sup>2</sup> - x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "x<sup>2</sup> - x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb > 0) {
+                    if (hsc == 0) {
+                        str += "x<sup>2</sup> + " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += "x<sup>2</sup> + " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "x<sup>2</sup> + " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb < 0) {
+                    if (hsc == 0) {
+                        str += "x<sup>2</sup> - " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += "x<sup>2</sup> - " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "x<sup>2</sup> - " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                }
+            } else if (hsa == -1) {
+                if (hsb == 0) {
+                    if (hsc == 0) {
+                        str += "-x<sup>2</sup> = 0";
+                    } else if (hsc > 0) {
+                        str += "-x<sup>2</sup> + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-x<sup>2</sup> - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == 1) {
+                    if (hsc == 0) {
+                        str += "-x<sup>2</sup> + x = 0";
+                    } else if (hsc > 0) {
+                        str += "-x<sup>2</sup> + x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-x<sup>2</sup> + x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == -1) {
+                    if (hsc == 0) {
+                        str += "-x<sup>2</sup> - x = 0";
+                    } else if (hsc > 0) {
+                        str += "-x<sup>2</sup> - x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-x<sup>2</sup> - x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb > 0) {
+                    if (hsc == 0) {
+                        str += "-x<sup>2</sup> + " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += "-x<sup>2</sup> + " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-x<sup>2</sup> + " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb < 0) {
+                    if (hsc == 0) {
+                        str += "-x<sup>2</sup> - " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += "-x<sup>2</sup> - " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-x<sup>2</sup> - " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                }
+            } else if (hsa > 0) {
+                if (hsb == 0) {
+                    if (hsc == 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> = 0";
+                    } else if (hsc > 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += Math.abs(hsa) + "x<sup>2</sup> - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == 1) {
+                    if (hsc == 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> + x = 0";
+                    } else if (hsc > 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> + x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += Math.abs(hsa) + "x<sup>2</sup> + x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == -1) {
+                    if (hsc == 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> - x = 0";
+                    } else if (hsc > 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> - x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += Math.abs(hsa) + "x<sup>2</sup> - x - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb > 0) {
+                    if (hsc == 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb < 0) {
+                    if (hsc == 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> - " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += Math.abs(hsa) + "x<sup>2</sup> - " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += Math.abs(hsa) + "x<sup>2</sup> - " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                }
+            } else {
+                if (hsb == 0) {
+                    if (hsc == 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> = 0";
+                    } else if (hsc > 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> -" + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == 1) {
+                    if (hsc == 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> + x = 0";
+                    } else if (hsc > 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> + x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> + x -" + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb == -1) {
+                    if (hsc == 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> - x = 0";
+                    } else if (hsc > 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> - x + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> - x -" + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb > 0) {
+                    if (hsc == 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> + " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                } else if (hsb < 0) {
+                    if (hsc == 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> - " + Math.abs(hsb) + "x = 0";
+                    } else if (hsc > 0) {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> - " + Math.abs(hsb) + "x " + " + " + Math.abs(hsc) + " = 0";
+                    } else {
+                        str += "-" + Math.abs(hsa) + "x<sup>2</sup> - " + Math.abs(hsb) + "x " + " - " + Math.abs(hsc) + " = 0";
+                    }
+                }
+            }
+            document.getElementById("btnhienpt").innerHTML = str;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Giải phương trình bậc 2</h3>
+        <p id="btnhienpt"></p>
+        <p>Số lần giải:
+            <b id="soLanGiai">0</b>
+        </p>
+        <hr>
+        <form>
+            <p><label>Nhập số a: </label><input type="text" id="a" onchange="hienpt();"></p>
+            <p><label>Nhập số b: </label><input type="text" id="b" onchange="hienpt();"></p>
+            <p><label>Nhập số c: </label><input type="text" id="c" onchange="hienpt();"></p>
+            <button type="button" id="btngiai" disabled onclick="giaipt(); lamlai(); slgiai();">Giải PT</button>
+            <button type="button" id="btnchoso" onclick="choso();hienpt();">Cho số</button>
+        </form>
+        <div id="kq"></div>
+        <div id="dongho">
+            <script>
+                var dh = setInterval("thoigian()", 1000);
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

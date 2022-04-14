@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ps21413 - asm - bài 2</title>
+    <link rel="stylesheet" href="bai2.css">
+    <script>
+        var mangHinh = [
+            "images/1.jpg",
+            "images/2.jpg",
+            "images/3.jpg",
+            "images/4.jpg",
+            "images/5.jpg",
+            "images/6.jpg",
+            "images/7.jpg",
+            "images/8.jpg"
+        ]
+        var index = 0;
+
+        function next() {
+            index++;
+            if (index >= mangHinh.length) {
+                index = 0;
+            }
+            var images = document.getElementById("show");
+            images.src = mangHinh[index];
+            document.getElementById("dem").innerText = index + 1 + '/8';
+        }
+        function prev() {
+            index--;
+            if (index < 0) {
+                index = mangHinh.length - 1;
+            }
+            var images = document.getElementById("show");
+            images.src = mangHinh[index];
+            document.getElementById("dem").innerText = index + 1 + '/8';
+        }
+        function loadAnh() {
+            var t = document.getElementById("show");
+            if (index == 7) {
+                index = 0;
+            } else {
+                index++;
+            }
+            t.src = mangHinh[index];
+
+            document.getElementById("dem").innerHTML = index + 1 + "/8";
+        }
+        setInterval(loadAnh, 3000);
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ảnh quê hương Bến Tre ngày xưa</h1>
+        <img src="./images/1.jpg" id="show" width="40%px">
+        <div class="icon">
+            <img src="images/previous.png" onclick="prev();">
+
+        </div>
+        <div class="next-icon">
+            <img src="images/next.png" onclick="next();">
+        </div>
+        <p id="dem">1/8</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Car</title>
+    <link rel="stylesheet" href="demogiohang.css">
+</head>
+
+<body>
+    <div class="giohang">
+        <a onclick="showcart();"><img src="images/cart.png"><span id="countsp">0</span></a>
+    </div>
+    <div id="showcart">
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>Hình</th>
+                <th>Tên sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền ($)</th>
+            </tr>
+            <tbody id="mycart">
+
+            </tbody>
+
+        </table>
+    </div>
+    <div class="boxcenter">
+        <div class="row mb header">
+            <h1> SIÊU THỊ TRỰC TUYẾN</h1>
+        </div>
+
+        <div class="row mb menu">
+            <ul>
+                <li><a href="demogiohang.html">Trang chủ</a></li>
+                <li><a href="#">Giỏ hàng</a></li>
+                <li><a target="_blank" href="form.html">Đăng ký</a></li>
+                <li><a href="#">Góp ý</a></li>
+                <li><a href="#">Hỏi đáp</a></li>
+            </ul>
+        </div>
+        <div class="row mb ">
+            <div class="row">
+                <div class="banner mb">
+                    <img src="images/banner.jpg" alt="">
+                    <html lang="en">
+                    <script>
+                        var mangHinh = [
+                            "images/a1.jpg",
+                            "images/a2.jpg",
+                            "images/a3.jpg",
+                            "images/a4.jpg",
+                            "images/a5.jpg",
+                            "images/a6.jpg",
+                            "images/a7.jpg",
+                            "images/a8.jpg",
+                            "images/a9.jpg"
+                        ]
+                        var index = 0;
+
+                        function next() {
+                            index++;
+                            if (index >= mangHinh.length) {
+                                index = 0;
+                            }
+                            var images = document.getElementById("show");
+                            images.src = mangHinh[index];
+                            document.getElementById("dem").innerText = index + 1 + '/9';
+                        }
+                        function prev() {
+                            index--;
+                            if (index < 0) {
+                                index = mangHinh.length - 1;
+                            }
+                            var images = document.getElementById("show");
+                            images.src = mangHinh[index];
+                            document.getElementById("dem").innerText = index + 1 + '/9';
+                        }
+                        function loadAnh() {
+                            var t = document.getElementById("show");
+                            if (index == 8) {
+                                index = 0;
+                            } else {
+                                index++;
+                            }
+                            t.src = mangHinh[index];
+
+                            document.getElementById("dem").innerHTML = index + 1 + "/9";
+                        }
+                        setInterval(loadAnh, 3000);
+                    </script>
+
+                    <div class="container">
+                        <h1>Các sản phẩm hàng bên dưới</h1>
+                        <img src="./images/a1.jpg" id="show" width="40%px">
+                        <div class="icon">
+                            <img src="images/previous.png" onclick="prev();">
+
+                        </div>
+                        <div class="next-icon">
+                            <img src="images/next.png" onclick="next();">
+                        </div>
+                        <p id="dem">1/9</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="boxsp mr">
+                    <div class="row img"><img src="images/a.jpg" alt=""></div>
+                    <p>$<span>90000</span></p>
+                    <a href="#">Innova</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp mr">
+                    <div class="row img"><img src="images/b.jpg" alt=""></div>
+                    <p>$<span>180000</span></p>
+                    <a href="#">Lamboghini</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp ">
+                    <div class="row img"><img src="images/c.jpg" alt=""></div>
+                    <p>$<span>30000</span></p>
+                    <a href="#">Mazda</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp mr">
+                    <div class="row img"><img src="images/d.jpg" alt=""></div>
+                    <p>$<span>40000</span></p>
+                    <a href="#">Toyota</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp mr">
+                    <div class="row img"><img src="images/e.jpg" alt=""></div>
+                    <p>$<span>50000</span></p>
+                    <a href="#">Mercedes-benz</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp ">
+                    <div class="row img"><img src="images/f.jpg" alt=""></div>
+                    <p>$<span>60000</span></p>
+                    <a href="#">Lexus</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp mr">
+                    <div class="row img"><img src="images/g.jpg" alt=""></div>
+                    <p>$<span>70000</span></p>
+                    <a href="#">Hyundai</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp mr">
+                    <div class="row img"><img src="images/h.jpg" alt=""></div>
+                    <p>$<span>80000</span></p>
+                    <a href="#">Rolls Royce</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+                <div class="boxsp ">
+                    <div class="row img"><img src="images/j.jpg" alt=""></div>
+                    <p>$<span>90000</span></p>
+                    <a href="#">Porsche</a>
+                    <input type="number" name="soluong" min="1" max="10" value="1">
+                    <button onclick="themvaogiohang(this)">Đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="giohang.js"></script>
+</body>
+
+</html>
